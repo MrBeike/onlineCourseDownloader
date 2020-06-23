@@ -1,0 +1,52 @@
+请求 URL: http://jiaoxue.ahedu.cn/static_zxjx2020/js/json5.js?version=20200501
+请求方法: GET
+状态代码: 200 OK
+远程地址: 127.0.0.1:8888
+引用站点策略: no-referrer-when-downgrade
+Age: 573707
+Connection: keep-alive
+Content-Length: 372048
+Content-Type: application/javascript
+Date: Fri, 19 Jun 2020 04:56:13 GMT
+Last-Modified: Thu, 30 Apr 2020 13:50:17 GMT
+Server: Tengine
+Vary: Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+X-Via: 1.1 zhyd40:2 (Cdn Cache Server V2.0)[47 200 0], 1.1 PS-HFE-01Lkl21:14 (Cdn Cache Server V2.0)[0 200 0]
+Accept: text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cache-Control: no-cache
+Cookie: UM_distinctid=172cab97571b2b-0c67df3b314c61-5f351345-1fa400-172cab97572968; Hm_lvt_3706709ad6604521530b0b11395e6b74=1592539052; CNZZDATA1278735159=578980453-1592536380-%7C1592538018; Hm_lpvt_3706709ad6604521530b0b11395e6b74=1592542528
+Host: jiaoxue.ahedu.cn
+Pragma: no-cache
+Proxy-Connection: keep-alive
+Referer: http://jiaoxue.ahedu.cn/index.html
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.50
+X-Requested-With: XMLHttpRequest
+version: 20200501
+
+
+import os
+import time
+from pyaria2 import Aria2RPC
+ 
+def get_file_from_url(link, file_name):
+    jsonrpc = Aria2RPC()
+    set_dir = os.path.dirname(__file__)
+    options = {"dir": set_dir, "out": file_name, }
+    res = jsonrpc.addUri([link], options = options)
+ 
+def get_file_from_cmd(link):
+    exe_path = r'D:\aria2\aria2c.exe'
+    order = exe_path + ' -s16 -x10 ' + link
+    os.system(order)
+ 
+if __name__ == '__main__':
+    link = 'http://music.163.com/song/media/outer/url?id=400162138.mp3'
+    filename = '海阔天空.mp3'
+ 
+    start = time.time()
+    get_file_from_cmd(link)
+    end = time.time()
+    print (f"耗时:{end-start:.2f}")
